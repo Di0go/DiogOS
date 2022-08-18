@@ -4,6 +4,7 @@ mov ah, 0x0E
 ; print oops
 mov al, "o"
 int 0x10
+; repeat because "o" is still in al
 int 0x10
 
 mov al, "p"
