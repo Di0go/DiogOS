@@ -1,38 +1,28 @@
-[org 0x7c00]
+[org 0x7C00]
 
-; tty mode
-mov ah, 0x0E
+call new_line
 
-mov al, "1"
-int 0x10
-mov al, the_secret
-int 0x10
+mov bx, welcome
+call print
 
-mov al, "2"
-int 0x10
-mov al, [the_secret]
-int 0x10
+call new_line
 
-mov al, "3"
-int 0x10
-mov bx, the_secret
-add bx, 0x7C00
-mov al, [bx]
-int 0x10
+mov bx, farewell
+call print
 
-mov al, "4"
-int 0x10
-mov al, [0x7c2d]
-int 0x10
+call new_line
 
-; jmp to current address (hang in infinite loop)
 jmp $
 
-; label
-the_secret:
-    db "X"
+; sub-routine inclusion
+%include "boot_sect_print.asm"
 
-; fill all unused bytes with 0
-times 510-($-$$) db 0
+; strings
+welcome:
+    db "Welcome to DiogOS", 0
+farewell:
+    db "Fawewell...", 0
 
+; Padding and magic number.
+times 510 -( $ - $$ ) db 0
 dw 0xAA55
