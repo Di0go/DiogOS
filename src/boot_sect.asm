@@ -12,10 +12,14 @@ call print
 
 call new_line
 
+mov dx, 0xDEFF
+call print_hex
+
 jmp $
 
 ; sub-routine inclusion
 %include "boot_sect_print.asm"
+%include "boot_sect_print_hex.asm"
 
 ; strings
 welcome:
