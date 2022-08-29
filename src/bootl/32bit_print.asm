@@ -23,6 +23,8 @@ print_string_32b_loop:
     add ebx, 1      ; next char
     add edx, 2      ; next video memory position
 
+    jmp print_string_32b_loop
+
 print_string32b_done:
     pop ax
     pop ebx

@@ -19,10 +19,10 @@ gdt_start:
         db 0
 
         ;   1st and type flags
-        db 10011010
+        db 10011010b
 
         ;   2nd flags + the last 4 bits of the limit
-        db 11001111
+        db 11001111b
 
         ;   last 4 bits of the base
         db 0
@@ -32,11 +32,11 @@ gdt_start:
         dw 0xffff
 
         dw 0
-        dw 0
+        db 0
 
-        db 10010010
+        db 10010010b
         
-        db 11001111
+        db 11001111b
 
         db 0
     
