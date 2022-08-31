@@ -1,40 +1,43 @@
+;   Disk Address Packet Structure
+DAPS:
+                    db 0x10     ;   size of the packet (16 bytes)
+                    db 0
+    seccount:       dw 16       ;   number of sectors to transfer, int13 resets to number of sectors actually read for error checking
+    buffer:         dw 0x1000   ;   memory buffer destination
+                    dw 0        ;   in memory page 0
+    lba_store       dd 1        ;   lba to read here
+                    dd 0        ;   more bytes for big lba's ( > 4 bytes)
+
 disk_load:
     push ax
     push bx
-    push cx
-    push dx
 
-    mov ah, 0x02    ; 0x02 is read in int 0x13 function
-    mov al, dh      ; number of sectors to read (0x01 - 0x80)
-    mov cl, 0x02    ; sector to read (sectors start from 0x01)
-    mov ch, 0x00    ; cylinder
-    mov dh, 0x00    ; head number
-
-    ; dl stores the drive number, handled by BIOS
-    ; [es:bx] is the default location for int 0x13
+    mov si, DAPS
+    mov ah, 0x42
     int 0x13
-    jc disk_err     ; controlled by carry bit
+    jc short disk_err
 
-    pop dx          ; get the number of the sectors passed as input back
-    cmp al, dh      ; after 0x13 al stores the number of sectors read
-    jne sectors_err ; if wanted sectors and read sectors are different = error
+    mov bx, seccount
+    cmp bx, 16
+    jne short sectors_err
 
     pop ax
     pop bx
-    pop cx
     ret
 
 disk_err:
     mov bx, DISK_ERR
     call print
-    mov dh, ah      ; ah contains the error code
-    call print_hex
-    jmp $
+    jmp end
 
 sectors_err:
     mov bx, SECTORS_ERR
     call print
-    jmp $
+    jmp end
+
+end: 
+    hlt
+    jmp end
 
 DISK_ERR:
     db "Disk read error.", 0xA, 0xD, 0
