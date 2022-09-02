@@ -3,7 +3,11 @@
 To compile and execute there is a Makefile available inside ```/src```
 
 ```
-make bundle
+make kernel.o
+make kernel_entry.o
+make kernel.bin
+make boot_sect.bin
+make os-image.bin
 make run
 ```
 
