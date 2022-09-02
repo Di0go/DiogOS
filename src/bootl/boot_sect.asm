@@ -15,12 +15,12 @@ call switch_to_pm
 jmp halt
 
 ; sub-routine inclusion
-%include "boot_sect_print.asm"
-%include "boot_sect_print_hex.asm"
-%include "boot_sect_disk.asm"
-%include "32bit_print.asm"
-%include "32bit_switch.asm"
-%include "gdt.asm"
+%include "bootl/boot_sect_print.asm"
+%include "bootl/boot_sect_print_hex.asm"
+%include "bootl/boot_sect_disk.asm"
+%include "bootl/32bit_print.asm"
+%include "bootl/32bit_switch.asm"
+%include "bootl/gdt.asm"
 
 halt:
     hlt
