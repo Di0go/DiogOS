@@ -15,3 +15,6 @@ os-image.bin: boot_sect.bin kernel.bin
 
 run: os-image.bin
 	qemu-system-i386 os-image.bin
+
+clean:
+	rm *.bin *.o

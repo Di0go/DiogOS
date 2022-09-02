@@ -22,10 +22,6 @@ jmp halt
 %include "bootl/32bit_switch.asm"
 %include "bootl/gdt.asm"
 
-halt:
-    hlt
-    jmp halt
-
 load_kernel:
     mov bx, msg_kernel_load
     call print
@@ -33,6 +29,10 @@ load_kernel:
     call disk_load
 
     ret
+
+halt:
+    hlt
+    jmp halt
 
 [bits 32]
 welcome_to_pm:
