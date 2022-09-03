@@ -1,15 +1,14 @@
 # DiogOS
 
-This is my first attempt at writting an OS
-
-To compile the main .asm file use:
+To compile and execute there is a Makefile available inside ```/src```
 
 ```
-nasm -f bin asm_name.asm -o desired_name.bin  
+make kernel.o
+make kernel_entry.o
+make kernel.bin
+make boot_sect.bin
+make os-image.bin
+make run
 ```
 
-To run the OS itself I would recommend QEMU, quickest and easiest way.
-
-```
-qemu-system-x86_64 desired_name.bin
-```
+Feel free to edit the Makefile to your liking and use!
