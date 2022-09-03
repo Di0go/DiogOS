@@ -1,6 +1,6 @@
 # DiogOS
 
-To compile and execute there is a Makefile available inside ```/src```
+To compile and emulate there is a Makefile available inside ```/src```
 
 ```
 make kernel.o
@@ -11,4 +11,4 @@ make os-image.bin
 make run
 ```
 
-Feel free to edit the Makefile to your liking and use!
+Feel free to edit the Makefile to your liking!
