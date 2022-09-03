@@ -17,10 +17,6 @@ disk_load:
     int 0x13
     jc short disk_err
 
-    mov bx, seccount
-    cmp bx, 16
-    jne short sectors_err
-
     pop ax
     pop bx
     ret

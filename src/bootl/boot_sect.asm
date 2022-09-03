@@ -2,13 +2,16 @@
 
 KERNEL_OFFSET equ 0x1000    ; memory offset to laod the kernel to
 
-mov bp, 0x9000  ; set the stack away from current memory
+mov bp, 0x9000              ; set the stack away from current memory
 mov sp, bp
 
 mov bx, welcome
 call print
 
-call load_kernel
+mov bx, msg_kernel_load
+call print
+
+call disk_load
 
 call switch_to_pm
 
@@ -21,14 +24,6 @@ jmp halt
 %include "bootl/32bit_print.asm"
 %include "bootl/32bit_switch.asm"
 %include "bootl/gdt.asm"
-
-load_kernel:
-    mov bx, msg_kernel_load
-    call print
-
-    call disk_load
-
-    ret
 
 halt:
     hlt
