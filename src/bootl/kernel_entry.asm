@@ -1,4 +1,4 @@
-[bits 16]
+[bits 32]
 [EXTERN main]
 
 [GLOBAL _start]
