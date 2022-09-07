@@ -16,5 +16,3 @@ To clean the workspace of all binaries and object files use:
 ```
 make clean
 ```
-
-Feel free to edit the Makefile to your liking!
