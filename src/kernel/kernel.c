@@ -1,3 +1,5 @@
+#include "../drivers/ports.h"
+
 void main() 
 {
     //pointer to the first cell of video memory (top left corner of the screen)
