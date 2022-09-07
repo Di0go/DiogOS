@@ -1,14 +1,20 @@
 # DiogOS
 
-To compile and emulate there is a Makefile available inside ```/src```
+There is a Makefile available inside ```/src```
 
+To compile and execute in ```QEMU``` use:
 ```
-make kernel.o
-make kernel_entry.o
-make kernel.bin
-make boot_sect.bin
-make os-image.bin
 make run
+```
+
+To debug with ```gdb``` use:
+```
+make debug
+```
+
+To clean the workspace of all binaries and object files use:
+```
+make clean
 ```
 
 Feel free to edit the Makefile to your liking!
